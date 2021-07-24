@@ -1,0 +1,54 @@
+.section {
+    display: flex;
+    align-items: center;
+
+    h1 {
+        font-size: 60px;
+    }
+
+    p {
+        font-size: 25px;
+    }
+
+    & img {
+        width: 900px;
+        height: auto;
+        transform: scaleX(-1);
+    }
+
+    & .container-text {
+        width: 55%;
+        margin-top: 50px;
+        height: 94%;
+
+        & .description{
+            overflow: hidden;
+            max-height: 300px;
+            width: 700px;
+            margin-top: 50px;
+            &:hover{
+                overflow: auto;
+            }
+        }
+    }
+}
+
+#section-one {
+    width: 100%;
+    height: 86vh;
+    background: $backgroundColor1;
+}
+
+.preview {
+    width: 100%;
+    height: 4vh;
+    background: $backgroundColor2;
+ }
+
+     
+
+#section-two{
+    height: 100vh;
+    background-color: $backgroundColor2;   
+}
+   

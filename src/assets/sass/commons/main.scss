@@ -1,0 +1,29 @@
+$backgroundColor1: #2060C2;
+$backgroundColor2: #CFCE8B;
+$textColor: #ffffff;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: $backgroundColor1;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+        &img {
+            width: auto;
+            height: 70px;
+        }
+}
+
+body {
+    color: $textColor;
+    font-family: 'Courier New', Courier, monospace;
+}
