@@ -12,6 +12,8 @@ interface SProduct {
     bgId: string;
 }
 
+let cartItems: SProduct[] = [];
+
 const Section: React.FC = () => {
 
     const [data, setData] = useState<SProduct[]>([]);
@@ -24,7 +26,7 @@ const Section: React.FC = () => {
     }, []);
 
 
-    let cartItems: SProduct[] = [];
+    
 
     function AddCart(item: SProduct) {
         cartItems.push(item);
@@ -72,5 +74,6 @@ const Section: React.FC = () => {
         </>
     );
 }
-
+export {cartItems} ;
+export type { SProduct } ;
 export default Section;
