@@ -23,6 +23,18 @@ const Section: React.FC = () => {
         );
     }, []);
 
+
+    let cartItems: SProduct[] = [];
+
+    function AddCart(item: SProduct) {
+        cartItems.push(item);
+        cartItems = cartItems.sort(
+            (item1, item2) => item1.id - item2.id
+            );
+        console.log(cartItems);
+    }
+    
+
     return (
         <>
             <section className="section" id="section-one">
@@ -41,7 +53,12 @@ const Section: React.FC = () => {
                         <div className="description">
                             <p>{ prod.description }</p>
                         </div>
-                        
+                        <div className="cart-options">
+                            <p className="product-price">R$ {prod.price}</p>
+                            <button onClick={ () => {AddCart(prod)}}> 
+                            Adicionar ao Carrinho 
+                            </button>
+                        </div>
                     </div>
                 </div>
 

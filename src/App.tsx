@@ -1,11 +1,11 @@
 import React from "react";
-import Home from "./view/Home/";
-import './assets/sass/style.scss';
+
+import Routes from "./routes";
 
 const App: React.FC = () => {
   return (
     <>
-      <Home />
+      <Routes />
     </>
   );
 }
