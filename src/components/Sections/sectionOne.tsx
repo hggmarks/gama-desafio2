@@ -1,52 +1,79 @@
-import React from "react";
-import AirJordanPro from "../../assets/images/Jordan.jpg"
+import React, {useState, useEffect} from "react";
+import api from "../../services/api";
+//import AirJordanPro from "../../assets/images/Jordan.jpg"
+//import DaybreakSP from "../../assets/images/Nike-Daybreak-SP.jpg"
 
-const SectionOne: React.FC = () => {
+interface SProduct {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    photo: string;
+    bgId: string;
+}
+
+let cartItems: SProduct[] = [];
+
+const Section: React.FC = () => {
+
+    const [data, setData] = useState<SProduct[]>([]);
+    useEffect(() => {
+        api.get('').then(
+            response => {
+                setData(response.data);
+            }
+        );
+    }, []);
+
+
+    
+
+    function AddCart(item: SProduct) {
+        cartItems.push(item);
+        cartItems = cartItems.sort(
+            (item1, item2) => item1.id - item2.id
+            );
+        console.log(cartItems);
+    }
+    
 
     return (
         <>
             <section className="section" id="section-one">
+                {
+                    data.map(
+                        prod => (
+                            
+                            <div className="product-content" id={prod.bgId} >
+                    <div className="container-img">
+                        <img src={prod.photo} alt="Imagem Jordans Pro" />
+                    </div>
 
-                <div className="container-img">
-                    <img src={AirJordanPro} alt="Imagem Jordans Pro" />
-                </div>
+                    <div className="container-text">
+                        <h1>{prod.name}</h1>
 
-                <div className="container-text">
-                    <h1>Title 1</h1>
-
-                    <div className="description">
-                        <p>                                                                                   
-                            Embora obscuro - e provavelmente desconhecido para aqueles que participam da cultura hoje - o Jordan Pro Strong 
-                            tem uma história que se baseia desde 1998. E depois de um reaparecimen to muito repentino, o modelo deve adicionar
-                            Branco e Real à sua lista moderna muito em breve.           
-                        </p>
-
-                        <br />
-
-                        <p>
-                            Graças à sua semelhança com o Air Jordan 13, o Pro Strong é amplamente considerado como um dos melhores sapatos 
-                            da Equipe Jordan de todos os tempos. Couros acolchoados vestem o lado     da mesma forma, embora sua costura seja 
-                            mais semelhante às penas do amado logotipo das asas. Sua coloração branca só auxilia nessa conexão, ao mesmo tempo 
-                            em que combina com a unidade de renda e a entressola adjacentes.
-                        </p>
-
-                        <br />
-
-                        <p>
-                            Em outros lugares, o amado azul "Real" destaca não apenas a gravação do perfil, mas também o logotipo ao longo 
-                            do vampiro, o texto em cima da língua, e a totalidade da sola. Finaliza do com uma base metálica prateada, este 
-                            colorway deve estar atingindo Nike.com e varejistas selecinonados antes do final do ano.                                                                     
-                        </p>
-
+                        <div className="description">
+                            <p>{ prod.description }</p>
+                        </div>
+                        <div className="cart-options">
+                            <p className="product-price">R$ {prod.price}</p>
+                            <button onClick={ () => {AddCart(prod)}}> 
+                            Adicionar ao Carrinho 
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                
+                        )
+                    )
+                }
+                
             </section>
 
-            <div className="preview">
-
-            </div>
         </>
     );
 }
-
-export default SectionOne;
+export {cartItems} ;
+export type { SProduct } ;
+export default Section;
